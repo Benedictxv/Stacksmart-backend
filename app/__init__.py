@@ -22,5 +22,10 @@ def create_app():
     app.register_blueprint(payments_bp, url_prefix="/api/payments")
     app.register_blueprint(coach_bp, url_prefix="/api/coach")
     app.register_blueprint(user_bp, url_prefix="/api/user")
-    from . import models    
+    
+    from . import models
+
+    with app.app_context():
+        db.create_all()
+
     return app
